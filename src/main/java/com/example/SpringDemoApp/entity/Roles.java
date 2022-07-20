@@ -3,6 +3,7 @@ package com.example.SpringDemoApp.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roles {
+public class Roles implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,4 +20,9 @@ public class Roles {
 
     @Column(name = "roles")
     private String roles;
+
+    @Override
+    public String getAuthority() {
+        return this.roles;
+    }
 }
